@@ -1,44 +1,53 @@
 <template>
-    <div>
-        <p>componente de mensagem</p>
-        <div>
-            <form id="buguer-form">
-                <div class="input-container">
-                    <label for="nome">Nome Cliente</label>
-                    <input type="text" id="nome" name="nome" v-model="nome" placeholder="Nome Cliente"/>
-                </div>
-                <div class="input-container">
-                    <label for="pao">Escolha o pão:</label>
-                    <select name="pao" id="pao" v-model="pao">
-                        <option value="">Selecione o pão</option>
-                        <option value="integlao">integral</option>
-                    </select>
-                </div>
-                <div class="input-container">
-                    <label for="carne">Escolha carne</label>
-                    <select name="carne" id="carne" v-model="carne">
-                        <option value="">Selecione a carne</option>
-                        <option value="cupim">cupim</option>
-                    </select>
-                </div>
-                <div class="opcionais-container">
-                     <label id="opcionais-title" for="opcionais">Selecione os opcionais:</label>
-                    <div class="checkbox-container">
-                        <input type="checkbox" name="opcionais" id="opcionais" value="salame"><label for="opcionais">salame</label>
-                    </div>
-                    <div class="checkbox-container">
-                        <input type="checkbox" name="opcionais" id="opcionais" value="salame"><label for="opcionais">salame</label>
-                    </div>
-                    <div class="checkbox-container">
-                        <input type="checkbox" name="opcionais" id="opcionais" value="salame"><label for="opcionais">salame</label>
-                    </div>
-                </div>
-                <div class="input-container">
+  <Message :msg="msg" v-show="msg" />
+  <div>
+    <form id="burger-form" method="POST" @submit="createBurger">
+      <div class="input-container">
+        <label for="nome">Nome do cliente:</label>
+        <input type="text" id="nome" name="nome" v-model="nome" placeholder="Digite o seu nome">
+      </div>
+      <div class="input-container">
+        <label for="pao">Escolha o pão:</label>
+        <select name="pao" id="pao" v-model="pao">
+          <option value="">Selecione o seu pão</option>
+          <option v-for="pao in paes" :key="pao.id" :value="pao.tipo">{{ pao.tipo }}</option>
+        </select>
+      </div>
+      <div class="input-container">
+        <label for="carne">Escolha a carne do seu Burger:</label>
+        <select name="carne" id="carne" v-model="carne">
+          <option value="">Selecione o tipo de carne</option>
+          <option v-for="carne in carnes" :key="carne.id" :value="carne.tipo">{{ carne.tipo }}</option>
+        </select>
+      </div>
+      <div id="opcionais-container" class="input-container">
+        <label id="opcionais-title" for="opcionais">Selecione os opcionais:</label>
+        <div class="checkbox-container">
+          <input type="checkbox" name="opcionais" value="salame">
+          <span>Salame</span>
+          
+        </div>
+        <div class="checkbox-container">
+          <input type="checkbox" name="opcionais" value="salame">
+          <span>Salame</span>
+          
+        </div>
+        <div class="checkbox-container">
+          <input type="checkbox" name="opcionais" value="salame">
+          <span>Salame</span>
+          
+        </div>
+        <div class="checkbox-container">
+          <input type="checkbox" name="opcionais" value="salame">
+          <span>Salame</span>
+          
+        </div>
+      </div>
+      <div class="input-container">
         <input class="submit-btn" type="submit" value="Criar meu Burger!">
       </div>
-            </form>
-        </div>
-    </div>
+    </form>
+  </div>
 </template>
 
 
